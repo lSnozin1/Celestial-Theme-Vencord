@@ -22,21 +22,16 @@
   --background-accent: var(--background);
   --background-floating: var(--background);
   --background-nested-floating: var(--background);
+  --background-modifier-accent: rgb(from var(--highlight) r g b / 20%);
   --background-modifier-hover: rgb(from var(--highlight) r g b / 10%);
   --background-modifier-active: rgb(from var(--highlight) r g b / 30%);
   --background-modifier-selected: var(--highlight);
-  --background-base-low: var(--background) !important;
-  --background-base-lower: var(--background) !important;
-  --background-base-lowest: var(--background) !important;
-  --background-surface-high: var(--background) !important;
-  --background-surface-higher: var(--background) !important;
-  --background-surface-highest: var(--background) !important;
-  --background-mod-faint: rgb(from var(--highlight) r g b / 10%) !important;
-  --background-mod-subtle: var(--background) !important;
-  --background-mod-normal: rgb(from var(--highlight) r g b / 15%) !important;
-  --background-mod-strong: rgb(from var(--highlight) r g b / 25%) !important;
+  --background-base-lowest: var(--background);
+  --background-base-low: var(--background);
+  --background-surface-high: var(--background);
   --modal-background: var(--background);
   --modal-footer-background: var(--background);
+  --background-floating: var(--background);
   --bg-surface-overlay: var(--background);
   --activity-card-background: var(--background);
   --header-primary: var(--highlight);
@@ -237,6 +232,7 @@
 .theme-dark .nowPlayingColumn__133bf,
 .theme-dark .container__7d20c,
 .theme-dark .itemCard__7e549,
+.theme-dark .section__00943,
 .theme-dark .inset_bf1984,
 .theme-dark .container__9293f,
 .theme-dark .privateChannels_e6b769,
@@ -496,43 +492,20 @@
   display: none;
 }
 
-img[src*="avatars/137259132305539072"]+.header_c19a55::after,
-img[src*="users/137259132305539072"]+.header_c19a55::after {
-  content: " Theme Author";
-  display: inline-block;
-  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0ibTExLjQgMTguMTYxbDcuMzk2LTcuMzk2YTEwLjMgMTAuMyAwIDAgMS0zLjMyNi0yLjIzNGExMC4zIDEwLjMgMCAwIDEtMi4yMzUtMy4zMjdMNS44MzkgMTIuNmMtLjU3Ny41NzctLjg2Ni44NjYtMS4xMTQgMS4xODRhNi42IDYuNiAwIDAgMC0uNzQ5IDEuMjExY_0iLDE3My4zNjQtLjMwMi43NTItLjU2IDEuNTI2LTEuMzYyIDQuMDgzYTEuMDYgMS4wNiAwIDAgMCAxLjM0MiAxLjM0Mmw0LjA4My0xLjM2MmMuNzc1LS4yNTggMS4xNjItLjM4NyAxLjUyNi0uNTYgcS42NDctLjMwOCAxLjIxMS0uNzQ5Yy4zMTgtLjI0OC42MDctLjUzNyAxLjE4NC0xLjExNG05LjQ4OC05LjQ0OGEzLjkzMiAzLjkzMiAwIDAgMC01LjU2MS01LjU2MWwtLjg4Ny44ODdsLjAzOC4xMTFhOC43NSA4Ljc1IDAgMCAwIDIuMDkyIDMuMzJhOC43NSA4Ljc1IDAgMCAwIDMuNDMxIDIuMTN6Ii8+PC9zdmc+");
-  background-size: 12px 12px;
-  background-position: 3px;
-  background-repeat: no-repeat;
-  background-color: var(--highlight);
-  color: var(--background);
-  width: 15px !important;
-  height: 13px !important;
-  padding-bottom: 5px;
-  padding-right: 3px;
-  margin-left: 5px;
-  margin-bottom: -3px;
-  font-size: 10px;
-  font-weight: 600;
-  overflow: hidden;
-  text-align: center;
-  border-radius: 3px;
-  transition-duration: var(--transition-time);
+:root,
+.visual-refresh,
+.theme-dark {
+  --background-base-low: var(--background) !important;
+  --background-base-lower: var(--background) !important;
+  --background-base-lowest: var(--background) !important;
+  --background-surface-high: var(--background) !important;
+  --background-surface-higher: var(--background) !important;
+  --background-surface-highest: var(--background) !important;
+  --background-mod-faint: rgb(from var(--highlight) r g b / 10%) !important;
+  --background-mod-subtle: var(--background) !important;
+  --background-mod-normal: rgb(from var(--highlight) r g b / 15%) !important;
+  --background-mod-strong: rgb(from var(--highlight) r g b / 25%) !important;
 }
-
-img[src*="avatars/137259132305539072"]+.header_c19a55:hover::after,
-img[src*="users/137259132305539072"]+.header_c19a55:hover::after {
-  padding-left: 16px;
-  width: 70px !important;
-}
-
 .container__8a031 {
   box-shadow: 0px 0px 2px 2px var(--outline) !important;
-}
-
-.info__2debe:last-child::after {
-  content: "Dark Neon Version 3.0.4";
-  font-size: 12px;
-  line-height: 16px;
-  color: var(--highlight);
 }
