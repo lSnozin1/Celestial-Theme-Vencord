@@ -22,16 +22,21 @@
   --background-accent: var(--background);
   --background-floating: var(--background);
   --background-nested-floating: var(--background);
-  --background-modifier-accent: rgb(from var(--highlight) r g b / 20%);
   --background-modifier-hover: rgb(from var(--highlight) r g b / 10%);
   --background-modifier-active: rgb(from var(--highlight) r g b / 30%);
   --background-modifier-selected: var(--highlight);
-  --background-base-lowest: var(--background);
-  --background-base-low: var(--background);
-  --background-surface-high: var(--background);
+  --background-base-low: var(--background) !important;
+  --background-base-lower: var(--background) !important;
+  --background-base-lowest: var(--background) !important;
+  --background-surface-high: var(--background) !important;
+  --background-surface-higher: var(--background) !important;
+  --background-surface-highest: var(--background) !important;
+  --background-mod-faint: rgb(from var(--highlight) r g b / 10%) !important;
+  --background-mod-subtle: var(--background) !important;
+  --background-mod-normal: rgb(from var(--highlight) r g b / 15%) !important;
+  --background-mod-strong: rgb(from var(--highlight) r g b / 25%) !important;
   --modal-background: var(--background);
   --modal-footer-background: var(--background);
-  --background-floating: var(--background);
   --bg-surface-overlay: var(--background);
   --activity-card-background: var(--background);
   --header-primary: var(--highlight);
@@ -232,7 +237,6 @@
 .theme-dark .nowPlayingColumn__133bf,
 .theme-dark .container__7d20c,
 .theme-dark .itemCard__7e549,
-.theme-dark .section__00943,
 .theme-dark .inset_bf1984,
 .theme-dark .container__9293f,
 .theme-dark .privateChannels_e6b769,
@@ -520,6 +524,10 @@ img[src*="avatars/137259132305539072"]+.header_c19a55:hover::after,
 img[src*="users/137259132305539072"]+.header_c19a55:hover::after {
   padding-left: 16px;
   width: 70px !important;
+}
+
+.container__8a031 {
+  box-shadow: 0px 0px 2px 2px var(--outline) !important;
 }
 
 .info__2debe:last-child::after {
