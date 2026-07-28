@@ -1,5 +1,5 @@
 /**
- * @name CelestialTheme
+ * @name CelestialCord
  * @author lSnozin, Rely_Ranly
  * @version 2.0
  * @description Custom theme for Amigatos, inspired by other popular themes
@@ -35,6 +35,13 @@
   --background-blur: 5px; /* Blurs the image which helps with readability of text infront of it */
   --background-brightness: 100%; /* Changes the background images brightness */
 
-  --outline: rgba(105, 0, 209, 1); /* Outline of Discord 'settings' UI / Container */
+  --outline: rgba(244, 127, 255, 1); /* Outline of Discord 'settings' UI / Container */
+
+  /* Scrollbar customization */
+  --scrollbar-width: 6px;      /* main scrollbar size */
+  --scrollbar-width-md: 5px;   /* medium scrollers (store carousel etc.) */
+  --scrollbar-width-sm: 4px;   /* small scrollers */
+  --scrollbar-color: rgba(244, 127, 255, 1); /* leave as-is to match theme, or set a custom color */
 }
 /* =======================================================================  */
+
