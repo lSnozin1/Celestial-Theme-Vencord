@@ -1,18 +1,52 @@
+/* ~~~~		0.		TABLE OF CONTENTS				~~~~ */
+/*
+	1.	ROOT VARIABLES
+	2.	BACKGROUND IMAGE
+	3.	TRANSPARENCY OVERRIDES
+	4.	STATUS ICON FILLS
+	5.	UNREAD / NOTIFICATION INDICATORS
+	6.	DIVIDERS & LABELS
+	7.	ACCOUNT PANEL
+	8.	USER PROFILE POPOUT
+	9.	REACTIONS
+	10.	BOT TAGS
+	11.	TEXTAREA SCROLL CONTAINER
+	12.	MESSAGE STATE HIGHLIGHTS
+	13.	AUTOCOMPLETE
+	14.	CHANNEL LIST SELECTED STATE
+	15.	EMOJI / GIF / STICKER PICKER
+	16.	APP PICKER
+	17.	APP DETAILS MODAL
+	18.	HIDDEN DECORATIVE ELEMENTS
+	19.	BACKGROUND BASE OVERRIDES
+	20.	SETTINGS MODAL OUTLINE
+	21.	SCROLLBARS
+*/
+
+
+/* ~~~~		1.		ROOT VARIABLES					~~~~ */
+
 :root,
 .visual-refresh,
 .visual-refresh.theme-dark {
+
+  /* ----		1.1.	SCROLLBAR TOKENS			---- */
   --scrollbar-thin-thumb: var(--highlight);
   --scrollbar-auto-thumb: var(--highlight);
   --scrollbar-auto-scrollbar-color-thumb: var(--highlight);
   --scrollbar-thin-track: transparent;
   --scrollbar-auto-track: transparent;
   --scrollbar-auto-scrollbar-color-track: transparent;
+
+  /* ----		1.2.	TRANSITION & BACKGROUND IMAGE		---- */
   --transition-time: .3s;
   --background-image: unset;
   --background-position: center;
   --background-size: cover;
   --background-blur: 5px;
   --background-brightness: 100%;
+
+  /* ----		1.3.	BACKGROUND TOKENS			---- */
   --background-primary: var(--background);
   --background-mobile-primary: var(--background);
   --background-secondary: var(--background) !important;
@@ -34,14 +68,20 @@
   --background-floating: var(--background);
   --bg-surface-overlay: var(--background);
   --activity-card-background: var(--background);
+  --chat-background: var(--background);
+  --chat-input-container-background: var(--background);
+  --input-background: var(--background);
+  --channeltextarea-background: var(--background);
+  --profile-gradient-primary-color: var(--background);
+  --profile-gradient-secondary-color: var(--background);
+  --primary-630: var(--background);
+
+  /* ----		1.4.	TEXT / HEADER / LINK			---- */
   --header-primary: var(--highlight);
   --header-secondary: var(--highlight);
-  --chat-background: var(--background);
   --chat-border: var(--highlight);
-  --chat-input-container-background: var(--background);
   --spoiler-hidden-background: var(--highlight);
   --spoiler-revealed-background: rgb(from var(--highlight) r g b / 20%);
-  --input-background: var(--background);
   --textbox-markdown-syntax: var(--highlight);
   --logo-primary: var(--highlight);
   --control-brand-foreground: var(--highlight);
@@ -53,7 +93,6 @@
   --background-message-highlight-hover: rgb(from var(--highlight) r g b / 40%);
   --background-message-automod: rgb(from var(--highlight) r g b / 20%);
   --background-message-automod-hover: rgb(from var(--highlight) r g b / 40%);
-  --channeltextarea-background: var(--background);
   --text-link: var(--highlight);
   --text-link-low-saturation: rgb(from var(--highlight) r g b / 50%);
   --text-positive: var(--online-color);
@@ -62,6 +101,8 @@
   --text-brand: var(--highlight);
   --text-normal: var(--text);
   --text-muted: var(--text);
+
+  /* ----		1.5.	BUTTONS — DANGER			---- */
   --button-danger-background-disabled: rgb(from var(--close-button) r g b / 20%);
   --button-danger-background: rgb(from var(--close-button) r g b / 20%);
   --button-danger-background-hover: rgb(from var(--close-button) r g b / 70%);
@@ -75,6 +116,8 @@
   --button-outline-danger-text-active: rgb(from var(--close-button) r g b / 100%);
   --button-outline-danger-border-hover: rgb(from var(--close-button) r g b / 70%);
   --button-outline-danger-border-active: rgb(from var(--close-button) r g b / 100%);
+
+  /* ----		1.6.	BUTTONS — POSITIVE			---- */
   --button-positive-background-disabled: rgb(from var(--online-color) r g b / 20%);
   --button-positive-background: rgb(from var(--online-color) r g b / 20%);
   --button-positive-background-hover: rgb(from var(--online-color) r g b / 70%);
@@ -88,6 +131,8 @@
   --button-outline-positive-text-active: rgb(from var(--online-color) r g b / 100%);
   --button-outline-positive-border-hover: rgb(from var(--online-color) r g b / 70%);
   --button-outline-positive-border-active: rgb(from var(--online-color) r g b / 100%);
+
+  /* ----		1.7.	BUTTONS — PRIMARY			---- */
   --button-primary-background-disabled: rgb(from var(--highlight) r g b / 20%);
   --button-primary-background: rgb(from var(--highlight) r g b / 20%);
   --button-primary-background-hover: rgb(from var(--highlight) r g b / 70%);
@@ -101,6 +146,8 @@
   --button-outline-primary-text-active: rgb(from var(--highlight) r g b / 100%);
   --button-outline-primary-border-hover: rgb(from var(--highlight) r g b / 70%);
   --button-outline-primary-border-active: rgb(from var(--highlight) r g b / 100%);
+
+  /* ----		1.8.	BUTTONS — SECONDARY			---- */
   --button-secondary-background-disabled: rgb(from var(--highlight) r g b / 20%);
   --button-secondary-background: rgb(from var(--highlight) r g b / 20%);
   --button-secondary-background-hover: rgb(from var(--highlight) r g b / 70%);
@@ -114,6 +161,8 @@
   --button-outline-secondary-text-active: rgb(from var(--highlight) r g b / 100%);
   --button-outline-secondary-border-hover: rgb(from var(--highlight) r g b / 70%);
   --button-outline-secondary-border-active: rgb(from var(--highlight) r g b / 100%);
+
+  /* ----		1.9.	BUTTONS — BRAND				---- */
   --button-brand-background-disabled: rgb(from var(--highlight) r g b / 20%);
   --button-brand-background: rgb(from var(--highlight) r g b / 20%);
   --button-brand-background-hover: rgb(from var(--highlight) r g b / 70%);
@@ -134,6 +183,8 @@
   --button-outline-danger-text: var(--text);
   --button-outline-danger-text-hover: var(--text);
   --button-outline-danger-text-active: var(--text);
+
+  /* ----		1.10.	SEARCH & INTERACTIVE			---- */
   --search-popout-option-user-nickname: var(--highlight);
   --search-popout-option-user-username: rgb(from var(--highlight) r g b / 70%);
   --search-popout-option-filter-text: rgb(from var(--highlight) r g b / 70%);
@@ -142,11 +193,13 @@
   --interactive-normal: rgb(from var(--highlight) r g b / 50%);
   --interactive-hover: rgb(from var(--highlight) r g b / 100%);
   --interactive-active: var(--highlight);
+
+  /* ----		1.11.	STATUS					---- */
   --status-danger: var(--dnd-color);
   --status-warning: var(--afk-color);
   --status-positive: var(--online-color);
-  --profile-gradient-primary-color: var(--background);
-  --profile-gradient-secondary-color: var(--background);
+
+  /* ----		1.12.	BRAND & EXPERIMENT SHADES		---- */
   --bg-brand: var(--highlight);
   --brand-experiment: var(--highlight);
   --brand-experiment-100: var(--highlight);
@@ -195,12 +248,16 @@
   --brand-experiment-85a: var(--highlight);
   --brand-experiment-90a: var(--highlight);
   --brand-experiment-95a: var(--highlight);
-  --primary-630: var(--background);
+
+  /* ----		1.13.	BORDERS					---- */
   --border-faint: var(--highlight);
   --border-subtle: var(--highlight);
   --app-border-frame: var(--highlight);
   --background-modifier-accent: var(--highlight);
 }
+
+
+/* ~~~~		2.		BACKGROUND IMAGE				~~~~ */
 
 .theme-dark body {
   background-color: var(--background);
@@ -209,6 +266,9 @@
   background-size: var(--background-size);
   backdrop-filter: blur(var(--background-blur)) brightness(var(--background-brightness));
 }
+
+
+/* ~~~~		3.		TRANSPARENCY OVERRIDES				~~~~ */
 
 .theme-dark .appMount__51fd7,
 .theme-dark .app__160d8,
@@ -251,6 +311,9 @@
   background: rgba(0, 0, 0, 0) !important;
 }
 
+
+/* ~~~~		4.		STATUS ICON FILLS				~~~~ */
+
 .theme-dark #app-mount .wrapper__44b0c rect[fill="#593695"],
 .theme-dark #app-mount .wrapper__44b0c rect[mask*=streaming] {
   fill: var(--streaming-color);
@@ -270,6 +333,9 @@
 .theme-dark #app-mount .wrapper__44b0c rect[mask*=dnd] {
   fill: var(--dnd-color);
 }
+
+
+/* ~~~~		5.		UNREAD / NOTIFICATION INDICATORS		~~~~ */
 
 .theme-dark .numberBadge__40d6f {
   background-color: rgb(from var(--highlight) r g b / 70%) !important;
@@ -308,6 +374,9 @@
   background-color: var(--highlight);
   color: var(--background);
 }
+
+
+/* ~~~~		6.		DIVIDERS & LABELS				~~~~ */
 
 .theme-dark .membersGroup_c8ffbb {
   display: flex;
@@ -371,9 +440,15 @@
   background: linear-gradient(90deg, rgb(from var(--highlight) r g b / 1) 0%, rgb(from var(--highlight) r g b / 0) 100%);
 }
 
+
+/* ~~~~		7.		ACCOUNT PANEL					~~~~ */
+
 .theme-dark .panels__5e434 {
   background-color: var(--background);
 }
+
+
+/* ~~~~		8.		USER PROFILE POPOUT				~~~~ */
 
 .theme-dark .outer_c0bea0:not(.custom-user-profile) {
   background-color: var(--background);
@@ -383,6 +458,9 @@
 .theme-dark .outer_c0bea0:not(.custom-user-profile) .inner_c0bea0.user-profile-popout {
   background: inherit;
 }
+
+
+/* ~~~~		9.		REACTIONS					~~~~ */
 
 .theme-dark .reactionMe__23977 {
   border-color: var(--highlight) !important;
@@ -401,14 +479,23 @@
   border-color: var(--highlight);
 }
 
+
+/* ~~~~		10.		BOT TAGS					~~~~ */
+
 .theme-dark .botText__82f07,
 .theme-dark .botTagVerified__82f07 {
   color: var(--background);
 }
 
+
+/* ~~~~		11.		TEXTAREA SCROLL CONTAINER			~~~~ */
+
 .theme-dark .scrollableContainer__74017 {
   background-color: var(--background);
 }
+
+
+/* ~~~~		12.		MESSAGE STATE HIGHLIGHTS			~~~~ */
 
 .theme-dark .replying__5126c:hover {
   background-color: rgb(from var(--highlight) r g b / 60%) !important;
@@ -426,9 +513,15 @@
   background-color: var(--highlight);
 }
 
+
+/* ~~~~		13.		AUTOCOMPLETE					~~~~ */
+
 .theme-dark .autocompleteInner__13533 {
   background-color: var(--background);
 }
+
+
+/* ~~~~		14.		CHANNEL LIST SELECTED STATE			~~~~ */
 
 .theme-dark .selected_c69b6d .icon__2ea32,
 .theme-dark .selected_c69b6d .actionIcon_c69b6d:hover,
@@ -439,6 +532,11 @@
 .theme-dark .selected_c69b6d .link__2ea32 {
   background-color: rgb(from var(--highlight) r g b / 20%) !important;
 }
+
+
+/* ~~~~		15.		EMOJI / GIF / STICKER PICKER			~~~~ */
+
+/* ----		15.1.	PICKER BACKGROUNDS			---- */
 
 .theme-dark .contentWrapper__08434,
 .theme-dark .header__8ef02,
@@ -455,6 +553,8 @@
   background-color: var(--background);
 }
 
+/* ----		15.2.	EMPTY GUILD UPSELL			---- */
+
 .theme-dark .emptyGuildUpsell_e94b8c {
   background-color: var(--background);
   border: 1px solid var(--highlight);
@@ -465,14 +565,21 @@
   color: var(--highlight);
 }
 
+/* ----		15.3.	CATEGORY SELECTED			---- */
+
 .theme-dark .categoryItemDefaultCategorySelected_b9ee0c,
 .theme-dark .stickerCategoryGenericSelected__3ad28 {
   background-color: var(--highlight);
 }
 
+/* ----		15.4.	CATEGORY FADE				---- */
+
 .theme-dark .categoryFadeBlurple_d02962 {
   --bg-brand: var(--highlight);
 }
+
+
+/* ~~~~		16.		APP PICKER					~~~~ */
 
 .theme-dark .contentWrapper__9c62c {
   --bg-base-secondary: var(--background);
@@ -482,15 +589,24 @@
   --bg-mod-subtle: var(--highlight);
 }
 
+
+/* ~~~~		17.		APP DETAILS MODAL				~~~~ */
+
 .theme-dark .appDetailsContainer_cb32c7 {
   background-color: var(--background);
 }
+
+
+/* ~~~~		18.		HIDDEN DECORATIVE ELEMENTS			~~~~ */
 
 .theme-dark .children__9293f:after,
 .theme-dark .form_f75fb0::before,
 .theme-dark .option__56fec:after {
   display: none;
 }
+
+
+/* ~~~~		19.		BACKGROUND BASE OVERRIDES			~~~~ */
 
 :root,
 .visual-refresh,
@@ -506,11 +622,24 @@
   --background-mod-normal: rgb(from var(--highlight) r g b / 15%) !important;
   --background-mod-strong: rgb(from var(--highlight) r g b / 25%) !important;
 }
+
+
+/* ~~~~		20.		SETTINGS MODAL OUTLINE				~~~~ */
+
 .container__8a031 {
   box-shadow: 0px 0px 2px 2px var(--outline) !important;
 }
 
-/* ==== Scrollbar structure (customize via variables in the theme file) ==== */
+
+/* ~~~~		21.		SCROLLBARS					~~~~ */
+/*
+	21.1.	SIZE
+	21.2.	TRACK
+	21.3.	THUMB
+	21.4.	HIDDEN SCROLLBARS
+*/
+
+/* ----		21.1.	SIZE					---- */
 
 ::-webkit-scrollbar,
 #app-mount ::-webkit-scrollbar {
@@ -518,17 +647,19 @@
 	height: var(--scrollbar-width, 8px);
 }
 
-#app-mount .scroller-3vODG7::-webkit-scrollbar {
+#app-mount .scroller-3vODG7::-webkit-scrollbar {						/* medium scrollers (store carousel etc.) */
 	width: var(--scrollbar-width-md, 6px);
 	height: var(--scrollbar-width-md, 6px);
 }
 
-#app-mount .scroller_cf6769::-webkit-scrollbar,
+#app-mount .scroller_cf6769::-webkit-scrollbar,						/* small scrollers */
 #app-mount .scrollbar__506b3::-webkit-scrollbar,
 #app-mount .scroller-2PSBSf::-webkit-scrollbar {
 	width: var(--scrollbar-width-sm, 4px);
 	height: var(--scrollbar-width-sm, 4px);
 }
+
+/* ----		21.2.	TRACK					---- */
 
 ::-webkit-scrollbar,
 ::-webkit-scrollbar-track,
@@ -540,12 +671,16 @@
 	background: transparent !important;
 }
 
+/* ----		21.3.	THUMB					---- */
+
 ::-webkit-scrollbar-thumb,
 #app-mount ::-webkit-scrollbar-thumb {
 	border-radius: 10px;
 	border: none;
 	background: var(--scrollbar-color, var(--highlight)) !important;
 }
+
+/* ----		21.4.	HIDDEN SCROLLBARS			---- */
 
 .none__99f8c::-webkit-scrollbar-corner,
 .none__99f8c::-webkit-scrollbar-thumb,
