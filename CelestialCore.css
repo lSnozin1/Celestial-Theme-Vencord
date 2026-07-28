@@ -509,3 +509,51 @@
 .container__8a031 {
   box-shadow: 0px 0px 2px 2px var(--outline) !important;
 }
+
+/* ==== Scrollbar structure (customize via variables in the theme file) ==== */
+
+::-webkit-scrollbar,
+#app-mount ::-webkit-scrollbar {
+	width: var(--scrollbar-width, 8px);
+	height: var(--scrollbar-width, 8px);
+}
+
+#app-mount .scroller-3vODG7::-webkit-scrollbar {
+	width: var(--scrollbar-width-md, 6px);
+	height: var(--scrollbar-width-md, 6px);
+}
+
+#app-mount .scroller_cf6769::-webkit-scrollbar,
+#app-mount .scrollbar__506b3::-webkit-scrollbar,
+#app-mount .scroller-2PSBSf::-webkit-scrollbar {
+	width: var(--scrollbar-width-sm, 4px);
+	height: var(--scrollbar-width-sm, 4px);
+}
+
+::-webkit-scrollbar,
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-track-piece,
+#app-mount ::-webkit-scrollbar,
+#app-mount ::-webkit-scrollbar-track,
+#app-mount ::-webkit-scrollbar-track-piece {
+	border-color: transparent !important;
+	background: transparent !important;
+}
+
+::-webkit-scrollbar-thumb,
+#app-mount ::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	border: none;
+	background: var(--scrollbar-color, var(--highlight)) !important;
+}
+
+.none__99f8c::-webkit-scrollbar-corner,
+.none__99f8c::-webkit-scrollbar-thumb,
+.none__99f8c::-webkit-scrollbar-track,
+.none__99f8c::-webkit-scrollbar,
+.none_d125d2::-webkit-scrollbar-corner,
+.none_d125d2::-webkit-scrollbar-thumb,
+.none_d125d2::-webkit-scrollbar-track,
+.none_d125d2::-webkit-scrollbar {
+	display: none;
+}
