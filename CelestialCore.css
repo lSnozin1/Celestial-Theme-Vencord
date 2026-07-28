@@ -692,3 +692,100 @@
 .none_d125d2::-webkit-scrollbar {
 	display: none;
 }
+
+/* =======================================================================
+ * CHANNEL SELECTION ANIMATION & STYLING
+ * ======================================================================= */
+@keyframes celestial-channel-select {
+  from { right: 100%; }
+  to   { right: 0; }
+}
+
+.theme-dark .selected_c69b6d .link__2ea32 {
+  background-color: transparent !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-dark .selected_c69b6d .link__2ea32::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--channel-select-bg, var(--highlight)) !important;
+  z-index: -1;
+  animation: celestial-channel-select var(--transition-time, .6s) ease-in-out;
+}
+
+.theme-dark .selected_c69b6d .icon__2ea32,
+.theme-dark .selected_c69b6d .name__2ea32 {
+  color: var(--channel-selected-text, rgba(0, 0, 0, 1)) !important;
+}
+
+/* =======================================================================
+ * CHECKBOXES, RADIOS & TOGGLE SWITCHES
+ * ======================================================================= */
+/* Checkbox container and border styling */
+.checkbox_f4f0eb {
+  border-width: var(--checkbox-border-width, 1px) !important;
+}
+
+/* Selected checkbox (legacy & standard classes) */
+.checkboxSelected_f4f0eb {
+  border: 1px solid var(--checkbox-color, var(--highlight)) !important;
+  background: transparent !important;
+}
+
+/* Modern Discord checkbox options (Settings / Permissions / Roles) */
+.checkboxOption__714a9[data-selected] .checkboxIndicator__714a9,
+.checkboxOption__714a9[data-selected]:hover:not([data-disabled]) .checkboxIndicator__714a9 {
+  border-color: var(--checkbox-color, var(--highlight)) !important;
+  background-color: transparent !important;
+}
+
+/* Checkbox indicators and checkmark icons */
+.checkboxIndicator__714a9 {
+  border-color: var(--checkbox-color, var(--highlight)) !important;
+  background-color: transparent !important;
+}
+
+.checkIcon__270d7 {
+  background: var(--checkbox-color, var(--highlight)) !important;
+}
+
+.checkmark__36dee {
+  color: var(--checkbox-color, var(--highlight)) !important;
+}
+
+/* Radio buttons & options */
+.radioForeground_f4f0eb {
+  color: currentColor !important;
+}
+
+.outerRadioBase__64e61 {
+  stroke: var(--text, rgba(197, 200, 198, 1)) !important;
+  stroke-width: 4 !important;
+}
+
+:is(.radioGroupOption__64e61, .standaloneRadioIndicator__64e61)[data-selected] :is(.outerRadioBase__64e61, .outerRadioFill__64e61),
+:is(.radioGroupOption__64e61, .standaloneRadioIndicator__64e61)[data-selected]:not([data-disabled]):hover :is(.outerRadioBase__64e61, .outerRadioFill__64e61) {
+  fill: none !important;
+  stroke: var(--checkbox-color, var(--highlight)) !important;
+}
+
+/* Toggle switches */
+.switchIndicator_a28278:not([style*="background-color: rgba(0, 0, 0, 0.12)"]) {
+  background: var(--switch-color, var(--highlight)) !important;
+}
+
+.circleToggled__11877 {
+  outline-color: var(--switch-color, var(--highlight)) !important;
+}
+
+.themeToggled__11877 {
+  background: rgba(0, 0, 0, 0.3) !important;
+  border-color: var(--switch-color, var(--highlight)) !important;
+}
+/* ======================================================================= */
