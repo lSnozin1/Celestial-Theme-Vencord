@@ -21,6 +21,8 @@
 	19.	BACKGROUND BASE OVERRIDES
 	20.	SETTINGS MODAL OUTLINE
 	21.	SCROLLBARS
+	22. CUSTOM TITLEBAR TEXT
+	23. CUSTOM HOME ICON
 */
 
 
@@ -800,5 +802,24 @@
 	font-size: calc(var(--custom-title-font-size, 16px) * var(--show-custom-title, 1));
 	font-weight: var(--custom-title-font-weight, bold);
 	display: block;
+}
+/* ======================================================================= */
+/* ~~~~		23.		CUSTOM HOME ICON				~~~~ */
+
+.tutorialContainer__1f388 .childWrapper__6e9f8 {
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: var(--homeImage);
+    background-size: var(--homeImageSize);
+    background-clip: border-box
+}
+.tutorialContainer__1f388 .wrapper__8436d:hover .childWrapper__6e9f8 {
+    background-color: var(--themeColor1) !important;
+}
+
+.tutorialContainer__1f388 .childWrapper__6e9f8>svg,
+.tutorialContainer__1f388 .childWrapper__6e9f8 .homeIcon-tEMBK1 {
+    display: none
 }
 /* ======================================================================= */
