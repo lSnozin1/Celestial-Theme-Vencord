@@ -1,7 +1,7 @@
 /**
  * @name CelestialCord
  * @author lSnozin, Rely_Ranly
- * @version 3.2
+ * @version 3.3
  * @description Custom theme for Amigatos, inspired by other popular themes
 */
 
@@ -44,12 +44,24 @@
   --scrollbar-color: rgba(244, 127, 255, 1); /* leave as-is to match theme, or set a custom color */
 
   /* =======================================================================
-   * Extra UI Customization (Channels, Checkboxes & Switches) */
+   * Extra UI Customization (Channels, Checkboxes, Switches, Titlebar) */
   --channel-select-bg: var(--highlight); /* Background color of channel selection */
   --channel-selected-text: rgba(0, 0, 0, 1); /* Text/Icon color of selected channel */
   
   --checkbox-color: var(--highlight); /* Color of checkboxes */
   --checkbox-border-width: 1px;       /* Checkboxes expessure */
   --switch-color: var(--highlight);   /* Toggles/switches colors */
+  
+  /* Custom titlebar text */
+  --show-custom-title: 1;                 /* 1 = show, 0 = hide */
+  --custom-title-text: "CelestialCord";   /* must be wrapped in quotes - Default is "CelestialCord" */
+  --custom-title-font-size: 20px;       /* Default is 20px */
+  --custom-title-font-weight: bold;       /* Default is 'bold' */
+  --custom-title-margin-top: 0px;       /* Default is 0px */
+  --custom-title-margin-left: 64px;       /* Default is 64px */
+  
+  /* HOME BUTTON */
+  --homeImage: url('https://i.vgy.me/EHVyhc.jpg');/* Home button image, must be a direct link | You can also set it to a gradient, google "css gradient"*/
+  --homeImageSize: cover;/* To cover the button, set to "cover". You can also set it to "100% 100%" but the image will be stretched. Set to "contain" to see the entire image */
 }
 /* =======================================================================  */
