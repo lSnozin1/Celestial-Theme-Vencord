@@ -1,11 +1,15 @@
 /* ~~~~		0.		TABLE OF CONTENTS				~~~~ */
+
 /*
+	Core file: all structural CSS lives here.
+	Colors and user-facing settings live in the Cord file.
+
 	1.	ROOT VARIABLES
 	2.	BACKGROUND IMAGE
 	3.	TRANSPARENCY OVERRIDES
 	4.	STATUS ICON FILLS
 	5.	UNREAD / NOTIFICATION INDICATORS
-	6.	DIVIDERS & LABELS
+	6.	CATEGORIES & DIVIDER LABELS
 	7.	ACCOUNT PANEL
 	8.	USER PROFILE POPOUT
 	9.	REACTIONS
@@ -13,20 +17,23 @@
 	11.	TEXTAREA SCROLL CONTAINER
 	12.	MESSAGE STATE HIGHLIGHTS
 	13.	AUTOCOMPLETE
-	14.	CHANNEL LIST SELECTED STATE
-	15.	EMOJI / GIF / STICKER PICKER
-	16.	APP PICKER
-	17.	APP DETAILS MODAL
-	18.	HIDDEN DECORATIVE ELEMENTS
-	19.	BACKGROUND BASE OVERRIDES
-	20.	SETTINGS MODAL OUTLINE
-	21.	SCROLLBARS
-	22.	CUSTOM TITLEBAR TEXT
-	23.	CUSTOM HOME ICON
+	14.	CHANNEL LIST & SELECTION STYLING
+	15.	SEARCH BAR
+	16.	EMOJI / GIF / STICKER PICKER
+	17.	APP PICKER
+	18.	APP DETAILS MODAL
+	19.	HIDDEN DECORATIVE ELEMENTS
+	20.	BACKGROUND BASE OVERRIDES
+	21.	SETTINGS MODAL OUTLINE
+	22.	SCROLLBARS
+	23.	CHECKBOXES, RADIOS & TOGGLE SWITCHES
+	24.	CUSTOM TITLEBAR TEXT
+	25.	CUSTOM HOME ICON
+	26.	VISUAL REFRESH OVERRIDES (keep last)
 */
 
 
-/* ~~~~		1.		ROOT VARIABLES					~~~~ */
+/* ~~~~		1.		ROOT VARIABLES				~~~~ */
 
 :root,
 .visual-refresh,
@@ -67,7 +74,6 @@
   --background-surface-high: var(--background);
   --modal-background: var(--background);
   --modal-footer-background: var(--background);
-  --background-floating: var(--background);
   --bg-surface-overlay: var(--background);
   --activity-card-background: var(--background);
   --chat-background: var(--background);
@@ -113,9 +119,6 @@
   --button-outline-danger-background: rgb(from var(--close-button) r g b / 50%);
   --button-outline-danger-background-hover: rgb(from var(--close-button) r g b / 70%);
   --button-outline-danger-background-active: rgb(from var(--close-button) r g b / 100%);
-  --button-outline-danger-text: rgb(from var(--close-button) r g b / 50%);
-  --button-outline-danger-text-hover: rgb(from var(--close-button) r g b / 70%);
-  --button-outline-danger-text-active: rgb(from var(--close-button) r g b / 100%);
   --button-outline-danger-border-hover: rgb(from var(--close-button) r g b / 70%);
   --button-outline-danger-border-active: rgb(from var(--close-button) r g b / 100%);
 
@@ -204,58 +207,11 @@
   /* ----		1.12.	BRAND & EXPERIMENT SHADES		---- */
   --bg-brand: var(--highlight);
   --brand-experiment: var(--highlight);
-  --brand-experiment-100: var(--highlight);
-  --brand-experiment-130: var(--highlight);
-  --brand-experiment-160: var(--highlight);
-  --brand-experiment-200: var(--highlight);
-  --brand-experiment-230: var(--highlight);
-  --brand-experiment-260: var(--highlight);
-  --brand-experiment-300: var(--highlight);
-  --brand-experiment-330: var(--highlight);
-  --brand-experiment-360: var(--highlight);
-  --brand-experiment-400: var(--highlight);
-  --brand-experiment-430: var(--highlight);
-  --brand-experiment-460: var(--highlight);
   --brand-experiment-500: var(--highlight);
-  --brand-experiment-530: var(--highlight);
-  --brand-experiment-560: var(--highlight);
-  --brand-experiment-600: var(--highlight);
-  --brand-experiment-630: var(--highlight);
-  --brand-experiment-660: var(--highlight);
-  --brand-experiment-700: var(--highlight);
-  --brand-experiment-730: var(--highlight);
-  --brand-experiment-760: var(--highlight);
-  --brand-experiment-800: var(--highlight);
-  --brand-experiment-830: var(--highlight);
-  --brand-experiment-860: var(--highlight);
-  --brand-experiment-900: var(--highlight);
-  --brand-experiment-930: var(--highlight);
-  --brand-experiment-960: var(--highlight);
-  --brand-experiment-05a: var(--highlight);
-  --brand-experiment-10a: var(--highlight);
-  --brand-experiment-15a: var(--highlight);
-  --brand-experiment-20a: var(--highlight);
-  --brand-experiment-25a: var(--highlight);
-  --brand-experiment-30a: var(--highlight);
-  --brand-experiment-35a: var(--highlight);
-  --brand-experiment-40a: var(--highlight);
-  --brand-experiment-45a: var(--highlight);
-  --brand-experiment-50a: var(--highlight);
-  --brand-experiment-55a: var(--highlight);
-  --brand-experiment-60a: var(--highlight);
-  --brand-experiment-65a: var(--highlight);
-  --brand-experiment-70a: var(--highlight);
-  --brand-experiment-75a: var(--highlight);
-  --brand-experiment-80a: var(--highlight);
-  --brand-experiment-85a: var(--highlight);
-  --brand-experiment-90a: var(--highlight);
-  --brand-experiment-95a: var(--highlight);
 
   /* ----		1.13.	BORDERS					---- */
   --border-faint: var(--highlight);
   --border-subtle: var(--highlight);
-  --app-border-frame: var(--highlight);
-  --background-modifier-accent: var(--highlight);
 }
 
 
@@ -266,8 +222,10 @@
   background-image: var(--background-image);
   background-position: var(--background-position);
   background-size: var(--background-size);
-  backdrop-filter: blur(var(--background-blur)) brightness(var(--background-brightness));
 }
+
+/* Note: the backdrop-filter that used --background-blur / --background-brightness
+ * was removed for performance. Those two variables are currently unused. */
 
 
 /* ~~~~		3.		TRANSPARENCY OVERRIDES				~~~~ */
@@ -277,9 +235,9 @@
 .theme-dark .bg__960e4,
 .theme-dark .guilds__5e434,
 .theme-dark .scroller_ef3116,
-.theme-dark .sidebar__5e434,
-.theme-dark .sidebar__5e434::after,
-.theme-dark .container__2637a,
+[class*="sidebar_"],
+[class*="sidebar_"] nav,
+[class*="sidebar_"] [class*="container_"],
 .theme-dark .chat_f75fb0,
 .theme-dark .chatContent_f75fb0,
 .theme-dark .title_f75fb0,
@@ -294,7 +252,6 @@
 .theme-dark .nowPlayingColumn__133bf,
 .theme-dark .container__7d20c,
 .theme-dark .itemCard__7e549,
-.theme-dark .section__00943,
 .theme-dark .inset_bf1984,
 .theme-dark .container__9293f,
 .theme-dark .privateChannels_e6b769,
@@ -337,7 +294,7 @@
 }
 
 
-/* ~~~~		5.		UNREAD / NOTIFICATION INDICATORS		~~~~ */
+/* ~~~~		5.		UNREAD / NOTIFICATION INDICATORS				~~~~ */
 
 .theme-dark .numberBadge__40d6f {
   background-color: rgb(from var(--highlight) r g b / 70%) !important;
@@ -378,7 +335,9 @@
 }
 
 
-/* ~~~~		6.		DIVIDERS & LABELS				~~~~ */
+/* ~~~~		6.		CATEGORIES & DIVIDER LABELS				~~~~ */
+
+/* ----		6.1.	MEMBER LIST GROUPS			---- */
 
 .theme-dark .membersGroup_c8ffbb {
   display: flex;
@@ -406,25 +365,22 @@
   background: linear-gradient(90deg, rgb(from var(--highlight) r g b / 1) 0%, rgb(from var(--highlight) r g b / 0) 100%);
 }
 
-.theme-dark .containerDefault__29444 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+[class*="membersGroup_"],
+[class*="membersGroup_"] span {
+  color: var(--highlight) !important;
 }
 
-.theme-dark .containerDefault__29444 div div {
-  color: var(--highlight);
+/* ----		6.2.	CHANNEL CATEGORIES			---- */
+
+/* Category centering & gradient lines */
+[class*="containerDefault_"]:has([class*="mainContent_"]) {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding-top: 16px;
 }
 
-.theme-dark .arrow_d64d50 {
-  display: none;
-}
-
-.theme-dark .container-q97qHp .overflow_b0dfc2 {
-  max-width: 8vw;
-}
-
-.theme-dark .containerDefault__29444::before {
+[class*="containerDefault_"]:has([class*="mainContent_"])::before {
   content: "";
   width: 100%;
   height: 2px;
@@ -433,7 +389,7 @@
   background: linear-gradient(90deg, rgb(from var(--highlight) r g b / 0) 0%, rgb(from var(--highlight) r g b / 1) 100%);
 }
 
-.theme-dark .containerDefault__29444::after {
+[class*="containerDefault_"]:has([class*="mainContent_"])::after {
   content: "";
   width: 100%;
   height: 2px;
@@ -442,8 +398,19 @@
   background: linear-gradient(90deg, rgb(from var(--highlight) r g b / 1) 0%, rgb(from var(--highlight) r g b / 0) 100%);
 }
 
+/* Category title and create-channel button colors (no :has()) */
+[class*="containerDefault_"] [class*="mainContent_"] :is(h3, [class*="name_"]),
+[class*="containerDefault_"] [class*="addButton_"] {
+  color: var(--highlight) !important;
+}
 
-/* ~~~~		7.		ACCOUNT PANEL					~~~~ */
+/* Category arrow color */
+[class*="containerDefault_"] [class*="mainContent_"] svg path {
+  fill: var(--highlight) !important;
+}
+
+
+/* ~~~~		7.		ACCOUNT PANEL				~~~~ */
 
 .theme-dark .panels__5e434 {
   background-color: var(--background);
@@ -462,7 +429,7 @@
 }
 
 
-/* ~~~~		9.		REACTIONS					~~~~ */
+/* ~~~~		9.		REACTIONS				~~~~ */
 
 .theme-dark .reactionMe__23977 {
   border-color: var(--highlight) !important;
@@ -482,7 +449,7 @@
 }
 
 
-/* ~~~~		10.		BOT TAGS					~~~~ */
+/* ~~~~		10.		BOT TAGS				~~~~ */
 
 .theme-dark .botText__82f07,
 .theme-dark .botTagVerified__82f07 {
@@ -490,14 +457,14 @@
 }
 
 
-/* ~~~~		11.		TEXTAREA SCROLL CONTAINER			~~~~ */
+/* ~~~~		11.		TEXTAREA SCROLL CONTAINER				~~~~ */
 
 .theme-dark .scrollableContainer__74017 {
   background-color: var(--background);
 }
 
 
-/* ~~~~		12.		MESSAGE STATE HIGHLIGHTS			~~~~ */
+/* ~~~~		12.		MESSAGE STATE HIGHLIGHTS				~~~~ */
 
 .theme-dark .replying__5126c:hover {
   background-color: rgb(from var(--highlight) r g b / 60%) !important;
@@ -516,29 +483,126 @@
 }
 
 
-/* ~~~~		13.		AUTOCOMPLETE					~~~~ */
+/* ~~~~		13.		AUTOCOMPLETE				~~~~ */
 
 .theme-dark .autocompleteInner__13533 {
   background-color: var(--background);
 }
 
 
-/* ~~~~		14.		CHANNEL LIST SELECTED STATE			~~~~ */
+/* ~~~~		14.		CHANNEL LIST & SELECTION STYLING				~~~~ */
 
-.theme-dark .selected_c69b6d .icon__2ea32,
-.theme-dark .selected_c69b6d .actionIcon_c69b6d:hover,
-.theme-dark .selected_c69b6d .name__2ea32 {
-  color: var(--highlight) !important;
+/* ----		14.1.	TEXT COLORS				---- */
+
+/* Normal / read channels */
+[class*="sidebar_"] [class*="link_"] [class*="name_"] {
+  color: var(--channel-text, rgba(255, 255, 255, 0.75)) !important;
 }
 
-.theme-dark .selected_c69b6d .link__2ea32 {
-  background-color: rgb(from var(--highlight) r g b / 20%) !important;
+/* Unread channels */
+[class*="sidebar_"] :is([class*="wrapper_"][class*="modeUnread_"], [class*="modeUnreadImportant_"]) [class*="name_"] {
+  color: var(--channel-unread-text, rgba(255, 255, 255, 1)) !important;
+}
+
+/* ----		14.2.	ICONS					---- */
+
+/* Inactive channel icons (#, lock, etc.) */
+[class*="sidebar_"] [class*="link_"] :is([class*="icon_"], [class*="iconContainer_"] svg) {
+  color: var(--channel-icon, rgb(from var(--highlight) r g b / 65%)) !important;
+  fill: currentColor !important;
+}
+
+/* ----		14.3.	HOVER STATE				---- */
+
+[class*="sidebar_"] [class*="link_"]:hover [class*="name_"],
+[class*="sidebar_"] [class*="link_"]:hover :is([class*="icon_"], [class*="iconContainer_"] svg) {
+  color: var(--channel-hover, var(--highlight)) !important;
+}
+
+/* ----		14.4.	SELECTION ANIMATION & FILL		---- */
+
+@keyframes celestial-channel-select {
+  from { transform: scaleX(0); transform-origin: left center; }
+  to   { transform: scaleX(1); transform-origin: left center; }
+}
+
+/* Selected & clicked channels: transparent base so the fill shows through */
+:is([class*="modeSelected_"], [class*="selected_"]) [class*="link_"],
+[class*="sidebar_"] [class*="link_"]:active {
+  background-color: transparent !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* Sliding fill */
+:is([class*="modeSelected_"], [class*="selected_"]) [class*="link_"]::before,
+[class*="sidebar_"] [class*="link_"]:active::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgb(from var(--channel-select-bg, var(--highlight)) r g b / var(--channel-select-opacity, 75%)) !important;
+  border-radius: 4px;
+  z-index: -1;
+  animation: celestial-channel-select var(--transition-time, .4s) ease-in-out;
+}
+
+/* ----		14.5.	SELECTED TEXT & ICONS			---- */
+
+:is([class*="modeSelected_"], [class*="selected_"], [class*="link_"]:active) :is(
+  [class*="name_"],
+  [class*="name_"] *,
+  [class*="icon_"],
+  [class*="icon_"] *,
+  [class*="iconContainer_"],
+  [class*="iconContainer_"] *,
+  [class*="actionIcon_"],
+  [class*="actionIcon_"] *
+) {
+  color: var(--channel-selected-text, rgba(0, 0, 0, 1)) !important;
+  fill: var(--channel-selected-text, rgba(0, 0, 0, 1)) !important;
 }
 
 
-/* ~~~~		15.		EMOJI / GIF / STICKER PICKER			~~~~ */
+/* ~~~~		15.		SEARCH BAR				~~~~ */
 
-/* ----		15.1.	PICKER BACKGROUNDS			---- */
+/* ----		15.1.	TEXT, PLACEHOLDER & ICONS		---- */
+/* Prefixed with .theme-dark so these keep winning over the generic
+ * placeholder/button color rules in section 26 */
+
+.theme-dark [class*="searchBar_"] {
+  --text-muted: var(--searchbar-text, var(--highlight)) !important;
+  --text-normal: var(--searchbar-text, var(--highlight)) !important;
+  --interactive-normal: var(--searchbar-text, var(--highlight)) !important;
+  --input-placeholder-text: var(--searchbar-text, var(--highlight)) !important;
+}
+
+.theme-dark [class*="searchBar_"],
+.theme-dark [class*="searchBar_"] *,
+.theme-dark [class*="searchBar_"] input::placeholder {
+  color: var(--searchbar-text, var(--highlight)) !important;
+}
+
+/* ----		15.2.	OUTLINE					---- */
+
+[class*="search_"] [class*="searchBar_"] {
+  border: 1px solid var(--searchbar-border, var(--highlight)) !important;
+}
+
+/* ----		15.3.	SEARCH POPOUT PANEL BORDER		---- */
+
+/* Search popout panel border (no :has()) */
+[class*="layer_"] [role="listbox"] {
+  border: 1px solid var(--searchbar-border, var(--highlight)) !important;
+  outline: 1px solid var(--searchbar-border, var(--highlight)) !important;
+}
+
+
+/* ~~~~		16.		EMOJI / GIF / STICKER PICKER				~~~~ */
+
+/* ----		16.1.	PICKER BACKGROUNDS			---- */
 
 .theme-dark .contentWrapper__08434,
 .theme-dark .header__8ef02,
@@ -555,7 +619,7 @@
   background-color: var(--background);
 }
 
-/* ----		15.2.	EMPTY GUILD UPSELL			---- */
+/* ----		16.2.	EMPTY GUILD UPSELL			---- */
 
 .theme-dark .emptyGuildUpsell_e94b8c {
   background-color: var(--background);
@@ -567,39 +631,38 @@
   color: var(--highlight);
 }
 
-/* ----		15.3.	CATEGORY SELECTED			---- */
+/* ----		16.3.	CATEGORY SELECTED			---- */
 
 .theme-dark .categoryItemDefaultCategorySelected_b9ee0c,
 .theme-dark .stickerCategoryGenericSelected__3ad28 {
   background-color: var(--highlight);
 }
 
-/* ----		15.4.	CATEGORY FADE				---- */
+/* ----		16.4.	CATEGORY FADE				---- */
 
 .theme-dark .categoryFadeBlurple_d02962 {
   --bg-brand: var(--highlight);
 }
 
 
-/* ~~~~		16.		APP PICKER					~~~~ */
+/* ~~~~		17.		APP PICKER				~~~~ */
 
 .theme-dark .contentWrapper__9c62c {
   --bg-base-secondary: var(--background);
   --input-border: var(--highlight);
   --text-link: var(--highlight);
   --text-brand: var(--highlight);
-  --bg-mod-subtle: var(--highlight);
 }
 
 
-/* ~~~~		17.		APP DETAILS MODAL				~~~~ */
+/* ~~~~		18.		APP DETAILS MODAL				~~~~ */
 
 .theme-dark .appDetailsContainer_cb32c7 {
   background-color: var(--background);
 }
 
 
-/* ~~~~		18.		HIDDEN DECORATIVE ELEMENTS			~~~~ */
+/* ~~~~		19.		HIDDEN DECORATIVE ELEMENTS				~~~~ */
 
 .theme-dark .children__9293f:after,
 .theme-dark .form_f75fb0::before,
@@ -608,7 +671,7 @@
 }
 
 
-/* ~~~~		19.		BACKGROUND BASE OVERRIDES			~~~~ */
+/* ~~~~		20.		BACKGROUND BASE OVERRIDES				~~~~ */
 
 :root,
 .visual-refresh,
@@ -626,22 +689,27 @@
 }
 
 
-/* ~~~~		20.		SETTINGS MODAL OUTLINE				~~~~ */
+/* ~~~~		21.		SETTINGS MODAL OUTLINE				~~~~ */
 
-.container__8a031 {
-  box-shadow: 0px 0px 2px 2px var(--outline) !important;
+:is([class*="modalContentInner_"], [class*="layer_"] [class*="layer_"] > [class*="standardSidebarView_"]) {
+  border: 1px solid var(--outline) !important;
+  box-shadow: 0 0 4px 2px var(--outline) !important;
+  border-radius: 10px !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
 }
 
 
-/* ~~~~		21.		SCROLLBARS					~~~~ */
+/* ~~~~		22.		SCROLLBARS				~~~~ */
+
 /*
-	21.1.	SIZE
-	21.2.	TRACK
-	21.3.	THUMB
-	21.4.	HIDDEN SCROLLBARS
+	22.1.	SIZE
+	22.2.	TRACK
+	22.3.	THUMB
+	22.4.	HIDDEN SCROLLBARS
 */
 
-/* ----		21.1.	SIZE					---- */
+/* ----		22.1.	SIZE					---- */
 
 ::-webkit-scrollbar,
 #app-mount ::-webkit-scrollbar {
@@ -649,19 +717,21 @@
 	height: var(--scrollbar-width, 8px);
 }
 
-#app-mount .scroller-3vODG7::-webkit-scrollbar {						/* medium scrollers (store carousel etc.) */
+/* Medium scrollers (store carousel etc.) */
+#app-mount .scroller-3vODG7::-webkit-scrollbar {
 	width: var(--scrollbar-width-md, 6px);
 	height: var(--scrollbar-width-md, 6px);
 }
 
-#app-mount .scroller_cf6769::-webkit-scrollbar,						/* small scrollers */
+/* Small scrollers */
+#app-mount .scroller_cf6769::-webkit-scrollbar,
 #app-mount .scrollbar__506b3::-webkit-scrollbar,
 #app-mount .scroller-2PSBSf::-webkit-scrollbar {
 	width: var(--scrollbar-width-sm, 4px);
 	height: var(--scrollbar-width-sm, 4px);
 }
 
-/* ----		21.2.	TRACK					---- */
+/* ----		22.2.	TRACK					---- */
 
 ::-webkit-scrollbar,
 ::-webkit-scrollbar-track,
@@ -673,7 +743,7 @@
 	background: transparent !important;
 }
 
-/* ----		21.3.	THUMB					---- */
+/* ----		22.3.	THUMB					---- */
 
 ::-webkit-scrollbar-thumb,
 #app-mount ::-webkit-scrollbar-thumb {
@@ -682,7 +752,7 @@
 	background: var(--scrollbar-color, var(--highlight)) !important;
 }
 
-/* ----		21.4.	HIDDEN SCROLLBARS			---- */
+/* ----		22.4.	HIDDEN SCROLLBARS			---- */
 
 .none__99f8c::-webkit-scrollbar-corner,
 .none__99f8c::-webkit-scrollbar-thumb,
@@ -695,40 +765,11 @@
 	display: none;
 }
 
-/* =======================================================================
- * CHANNEL SELECTION ANIMATION & STYLING
- * ======================================================================= */
-@keyframes celestial-channel-select {
-  from { right: 100%; }
-  to   { right: 0; }
-}
 
-.theme-dark .selected_c69b6d .link__2ea32 {
-  background-color: transparent !important;
-  position: relative;
-  overflow: hidden;
-}
+/* ~~~~		23.		CHECKBOXES, RADIOS & TOGGLE SWITCHES				~~~~ */
 
-.theme-dark .selected_c69b6d .link__2ea32::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: var(--channel-select-bg, var(--highlight)) !important;
-  z-index: -1;
-  animation: celestial-channel-select var(--transition-time, .6s) ease-in-out;
-}
+/* ----		23.1.	CHECKBOXES			---- */
 
-.theme-dark .selected_c69b6d .icon__2ea32,
-.theme-dark .selected_c69b6d .name__2ea32 {
-  color: var(--channel-selected-text, rgba(0, 0, 0, 1)) !important;
-}
-
-/* =======================================================================
- * CHECKBOXES, RADIOS & TOGGLE SWITCHES
- * ======================================================================= */
 /* Checkbox container and border styling */
 .checkbox_f4f0eb {
   border-width: var(--checkbox-border-width, 1px) !important;
@@ -761,7 +802,8 @@
   color: var(--checkbox-color, var(--highlight)) !important;
 }
 
-/* Radio buttons & options */
+/* ----		23.2.	RADIO BUTTONS			---- */
+
 .radioForeground_f4f0eb {
   color: currentColor !important;
 }
@@ -777,7 +819,8 @@
   stroke: var(--checkbox-color, var(--highlight)) !important;
 }
 
-/* Toggle switches */
+/* ----		23.3.	TOGGLE SWITCHES			---- */
+
 .switchIndicator_a28278:not([style*="background-color: rgba(0, 0, 0, 0.12)"]) {
   background: var(--switch-color, var(--highlight)) !important;
 }
@@ -790,8 +833,9 @@
   background: rgba(0, 0, 0, 0.3) !important;
   border-color: var(--switch-color, var(--highlight)) !important;
 }
-/* ======================================================================= */
-/* ~~~~		22.		CUSTOM TITLEBAR TEXT				~~~~ */
+
+
+/* ~~~~		24.		CUSTOM TITLEBAR TEXT				~~~~ */
 
 .title_c38106::before {
 	position: fixed;
@@ -803,23 +847,109 @@
 	font-weight: var(--custom-title-font-weight, bold);
 	display: block;
 }
-/* ======================================================================= */
-/* ~~~~		23.		CUSTOM HOME ICON				~~~~ */
+
+
+/* ~~~~		25.		CUSTOM HOME ICON				~~~~ */
+
+/* Target home button wrapper across both legacy and Visual Refresh Discord */
+:is(
+  [class*="tutorialContainer_"] [class*="childWrapper_"],
+  a[href="/channels/@me"] [class*="childWrapper_"],
+  [data-list-item-id="guildsnav___home"] [class*="childWrapper_"],
+  [class*="childWrapperNoHoverBg_"]
+) {
+  background-image: var(--homeImage) !important;
+  background-size: var(--homeImageSize, cover) !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-color: transparent !important;
+}
+
+/* Hide the default Discord logo SVG inside */
+:is(
+  [class*="tutorialContainer_"] [class*="childWrapper_"],
+  a[href="/channels/@me"] [class*="childWrapper_"],
+  [data-list-item-id="guildsnav___home"] [class*="childWrapper_"],
+  [class*="childWrapperNoHoverBg_"]
+) svg {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+/* ----		25.1.	BASE (hashed class names)		---- */
 
 .tutorialContainer__1f388 .childWrapper__6e9f8 {
-    background-color: transparent;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-image: var(--homeImage);
-    background-size: var(--homeImageSize);
-    background-clip: border-box
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: var(--homeImage);
+  background-size: var(--homeImageSize);
+  background-clip: border-box;
 }
+
 .tutorialContainer__1f388 .wrapper__8436d:hover .childWrapper__6e9f8 {
-    background-color: var(--themeColor1) !important;
+  background-color: var(--themeColor1) !important;
 }
 
 .tutorialContainer__1f388 .childWrapper__6e9f8>svg,
 .tutorialContainer__1f388 .childWrapper__6e9f8 .homeIcon-tEMBK1 {
-    display: none
+  display: none;
 }
-/* ======================================================================= */
+
+/* ----		25.2.	VISUAL REFRESH (wildcard class names)	---- */
+
+:is([class*="tutorialContainer_"] [class*="childWrapper_"], [class*="childWrapperNoHoverBg_"]) {
+  background: var(--homeImage) var(--homeImageSize) var(--background-position) no-repeat !important;
+}
+
+:is([class*="tutorialContainer_"] [class*="childWrapper_"], [class*="childWrapperNoHoverBg_"]) svg {
+  display: none !important;
+}
+
+
+/* ~~~~		26.		VISUAL REFRESH OVERRIDES				~~~~ */
+
+/* Keep this section LAST in the file. These rules used to live in the Cord
+ * file, which always loaded after the Core, so they must stay at the end to
+ * keep the same cascade priority. */
+
+/* ----		26.1.	OUTER CONTAINER RESET			---- */
+
+[class*="chat_"],
+[class*="chatContent_"],
+[class*="channelBottomBarArea_"],
+[class*="channelTextArea_"],
+[class*="form_"],
+[class*="stackedBars_"] {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* ----		26.2.	CHAT INPUT BAR CONTAINER		---- */
+
+[class*="scrollableContainer_"] {
+  background-color: var(--background) !important;
+  border: 1px solid var(--outline) !important;
+}
+
+/* ----		26.3.	INPUT TEXT & PLACEHOLDER		---- */
+
+[class*="textArea_"] [class*="markup_"],
+[class*="placeholder_"] {
+  color: var(--text) !important;
+}
+
+/* ----		26.4.	ACTION & INPUT BUTTONS			---- */
+
+[class*="attachButton_"],
+[class*="button_"] [class*="contents_"] {
+  color: var(--highlight) !important;
+}
+
+/* ----		26.5.	HEADER & PANELS				---- */
+
+[class*="themed_"],
+[class*="subtitleContainer_"] {
+  background-color: var(--background) !important;
+}

@@ -1,23 +1,35 @@
 /**
  * @name CelestialCord
  * @author lSnozin, Rely_Ranly
- * @version 3.3
+ * @version 3.4
  * @description Custom theme for Amigatos, inspired by other popular themes
 */
 
 /* ======================================================================= 
- * Main import for 90% of the theme to work, paste other imports below it if needed */
-@import url('https://lsnozin1.github.io/Celestial-Theme-Vencord/CelestialCore.css');
+ * IMPORTS (DEBUG / PRODUCTION)
+ * Main import for 90% of the theme to work, paste other imports below it if needed.
+ * Toggle between local testing and GitHub release below:
+ * ======================================================================= */
+
+/* [OPTION 1: LOCAL DEBUG] -> Loads immediately from the same folder */
 /* @import url('./CelestialCore.css'); */
+
+/* [OPTION 2: GITHUB / PRODUCTION] -> Uncomment when pushing updates to GitHub */
+@import url('https://lsnozin1.github.io/Celestial-Theme-Vencord/CelestialCore.css');
+
 /* ======================================================================= */
 
 
 /* =======================================================================
- * Customization Area for all theme attributes */
+ * Customization Area for all theme attributes
+ * (colors and settings only - all structural CSS lives in CelestialCore.css) */
  
 :root,
 .visual-refresh,
 .visual-refresh.theme-dark {
+
+  /* ---------------------------------------------------------------------
+   * Main Colors */
   --highlight: rgba(244, 127, 255, 1); /* The main highlight color */
   --background: rgba(18, 4, 18, 1); /* The main background color */
   --text: rgba(197, 200, 198, 1); /* The main text color */
@@ -27,85 +39,58 @@
   --dnd-color: rgba(255, 0, 0, 1); /* The color used in the "do not disturb" user status symbol */
   --streaming-color: rgba(188, 19, 254, 1); /* The color used in the "streaming X" user status symbol */
 
+  --outline: rgba(244, 127, 255, 1); /* Outline of Discord 'settings' UI / Container, and of the chat input bar */
+
+  /* ---------------------------------------------------------------------
+   * Animations */
   --transition-time: .4s; /* How fast animations added by the theme happen. Default is 0.4 seconds */
 
+  /* ---------------------------------------------------------------------
+   * Background Image */
   --background-image: unset; /* To add an image, replace unset with url(https://www.YOUR-URL-HERE.com) */
   --background-position: center; /* Positions the background image */
   --background-size: cover; /* Scales the background image */
-  --background-blur: 5px; /* Blurs the image which helps with readability of text infront of it */
-  --background-brightness: 100%; /* Changes the background images brightness */
+  --background-blur: 5px; /* Currently unused: the backdrop-filter was removed for performance */
+  --background-brightness: 100%; /* Currently unused: the backdrop-filter was removed for performance */
 
-  --outline: rgba(244, 127, 255, 1); /* Outline of Discord 'settings' UI / Container */
-
-  /* Scrollbar customization */
+  /* ---------------------------------------------------------------------
+   * Scrollbar customization */
   --scrollbar-width: 6px;      /* main scrollbar size */
   --scrollbar-width-md: 5px;   /* medium scrollers (store carousel etc.) */
   --scrollbar-width-sm: 4px;   /* small scrollers */
   --scrollbar-color: rgba(244, 127, 255, 1); /* leave as-is to match theme, or set a custom color */
 
   /* =======================================================================
-   * Extra UI Customization (Channels, Checkboxes, Switches, Titlebar) */
-  --channel-select-bg: var(--highlight); /* Background color of channel selection */
-  --channel-selected-text: rgba(0, 0, 0, 1); /* Text/Icon color of selected channel */
-  
+   * Extra UI Customization (Channels, Search Bar, Checkboxes, Switches, Titlebar) */
+
+  /* Channel list */
+  --channel-text: rgba(255, 255, 255, 0.75);  /* Text color of normal / read channels */
+  --channel-unread-text: rgba(255, 255, 255, 1); /* Text color of channels with unread messages */
+  --channel-icon: rgb(from var(--highlight) r g b / 65%); /* Color of the icons (#, lock, etc.) of inactive channels */
+  --channel-hover: var(--highlight);          /* Text/Icon color of a channel while hovering it */
+  --channel-select-bg: var(--highlight);      /* Background color of channel selection */
+  --channel-select-opacity: 75%;              /* Opacity of the channel selection background */
+  --channel-selected-text: rgba(0, 0, 0, 1);  /* Text/Icon color of selected channel */
+
+  /* Search bar */
+  --searchbar-text: var(--highlight);         /* Text, placeholder and icon color of the search bar */
+  --searchbar-border: var(--highlight);       /* Outline of the search bar and its popout panel */
+
+  /* Checkboxes & switches */
   --checkbox-color: var(--highlight); /* Color of checkboxes */
-  --checkbox-border-width: 1px;       /* Checkboxes expessure */
+  --checkbox-border-width: 1px;       /* Checkboxes exposure */
   --switch-color: var(--highlight);   /* Toggles/switches colors */
   
   /* Custom titlebar text */
   --show-custom-title: 1;                 /* 1 = show, 0 = hide */
   --custom-title-text: "CelestialCord";   /* must be wrapped in quotes - Default is "CelestialCord" */
-  --custom-title-font-size: 20px;       /* Default is 20px */
+  --custom-title-font-size: 20px;         /* Default is 20px */
   --custom-title-font-weight: bold;       /* Default is 'bold' */
-  --custom-title-margin-top: 0px;       /* Default is 0px */
+  --custom-title-margin-top: 0px;         /* Default is 0px */
   --custom-title-margin-left: 64px;       /* Default is 64px */
   
   /* HOME BUTTON */
-  --homeImage: url('https://i.vgy.me/EHVyhc.jpg');/* Home button image, must be a direct link | You can also set it to a gradient, google "css gradient"*/
-  --homeImageSize: cover;/* To cover the button, set to "cover". You can also set it to "100% 100%" but the image will be stretched. Set to "contain" to see the entire image */
+  --homeImage: url('https://i.vgy.me/EHVyhc.jpg'); /* Home button image, must be a direct link | You can also set it to a gradient, google "css gradient" */
+  --homeImageSize: cover; /* To cover the button, set to "cover". You can also set it to "100% 100%" but the image will be stretched. Set to "contain" to see the entire image */
 }
 /* =======================================================================  */
-
-/* ======================================================================= 
- * Visual Refresh Overrides (Chat Container, Input Bar & Header) */
-
-/* Reset Outer Container Backgrounds & Borders */
-[class*="chat_"],
-[class*="chatContent_"],
-[class*="channelBottomBarArea_"],
-[class*="channelTextArea_"],
-[class*="form_"],
-[class*="stackedBars_"] {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-
-/* Chat Input Bar Inner Container */
-[class*="scrollableContainer_"] {
-  background-color: var(--background) !important;
-  border: 1px solid var(--outline) !important;
-}
-
-/* Input Text & Placeholder Color */
-[class*="textArea_"] [class*="markup_"],
-[class*="placeholder_"] {
-  color: var(--text) !important;
-}
-
-/* Action & Input Buttons */
-[class*="attachButton_"],
-[class*="button_"] [class*="contents_"] {
-  color: var(--highlight) !important;
-}
-
-/* Header & Panels */
-[class*="themed_"],
-[class*="subtitleContainer_"] {
-  background-color: var(--background) !important;
-}
-
-/* Home Button Selector Update */
-[class*="childWrapperNoHoverBg_"] {
-  background: var(--homeImage) var(--homeImageSize) var(--background-position) no-repeat !important;
-}
