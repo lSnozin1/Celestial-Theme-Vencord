@@ -65,3 +65,47 @@
   --homeImageSize: cover;/* To cover the button, set to "cover". You can also set it to "100% 100%" but the image will be stretched. Set to "contain" to see the entire image */
 }
 /* =======================================================================  */
+
+/* ======================================================================= 
+ * Visual Refresh Overrides (Chat Container, Input Bar & Header) */
+
+/* Reset Outer Container Backgrounds & Borders */
+[class*="chat_"],
+[class*="chatContent_"],
+[class*="channelBottomBarArea_"],
+[class*="channelTextArea_"],
+[class*="form_"],
+[class*="stackedBars_"] {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Chat Input Bar Inner Container */
+[class*="scrollableContainer_"] {
+  background-color: var(--background) !important;
+  border: 1px solid var(--outline) !important;
+}
+
+/* Input Text & Placeholder Color */
+[class*="textArea_"] [class*="markup_"],
+[class*="placeholder_"] {
+  color: var(--text) !important;
+}
+
+/* Action & Input Buttons */
+[class*="attachButton_"],
+[class*="button_"] [class*="contents_"] {
+  color: var(--highlight) !important;
+}
+
+/* Header & Panels */
+[class*="themed_"],
+[class*="subtitleContainer_"] {
+  background-color: var(--background) !important;
+}
+
+/* Home Button Selector Update */
+[class*="childWrapperNoHoverBg_"] {
+  background: var(--homeImage) var(--homeImageSize) var(--background-position) no-repeat !important;
+}
